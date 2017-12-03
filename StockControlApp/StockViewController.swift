@@ -15,28 +15,28 @@ class StockViewController: UITableViewController, UISearchBarDelegate  {
     let maxRow = 15
     
     @IBOutlet weak var searchBar: UISearchBar!
-    lazy var dataIcon = [Int:[Icon]]()
+    lazy var dataStock = [Int:[Stock]]()
 
-    lazy var originalDataIcon = [Int: [Icon]]()
+    lazy var originalDataStock = [Int: [Stock]]()
     
     var cache = [String: UIImageView]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        dataIcon = generateIcons(maxSession: maxSession, maxRow: maxRow)
-        originalDataIcon = dataIcon
+        dataStock = generateStocks(maxSession: maxSession, maxRow: maxRow)
+        originalDataStock = dataStock
         
     }
     
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return dataIcon.count
+        return dataStock.count
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (dataIcon[section]?.count)!
+        return (dataStock[section]?.count)!
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -47,16 +47,28 @@ class StockViewController: UITableViewController, UISearchBarDelegate  {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "stockCell", for: indexPath)
         
-        let content = dataIcon[indexPath.section]![indexPath.row]
+        let content = dataStock[indexPath.section]![indexPath.row]
         
-        cell.textLabel?.text = content.name
+        cell.textLabel?.text = String(format: "\(content.name) : %.2f(%.2f)", content.currentValue, content.variation)
         cell.detailTextLabel?.text = content.description
         
         var image = UIImage(named: content.imageName)
         image = image?.withRenderingMode(.alwaysTemplate)
         cell.imageView?.image = image
         
-        cell.imageView?.tintColor = UIColor(displayP3Red: normalizedRandom(), green: normalizedRandom(), blue: normalizedRandom(), alpha: 1)
+        var red:Float = 0
+        var green:Float = 0
+        var blue:Float = 0
+
+        if content.variation < 0 {
+            red = 0.8
+        } else if content.variation > 0 {
+            green = 0.8
+        } else {
+            blue = 0.8
+        }
+        
+        cell.imageView?.tintColor = UIColor(displayP3Red: CGFloat(red), green: CGFloat(green), blue: CGFloat(blue), alpha: 1)
         
         return cell
     }
@@ -67,17 +79,17 @@ class StockViewController: UITableViewController, UISearchBarDelegate  {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty {
-            dataIcon = originalDataIcon
+            dataStock = originalDataStock
             tableView.reloadData()
             return
         }
         
-        for (section, list) in originalDataIcon {
+        for (section, list) in originalDataStock {
             let filtered = list.filter {
                 let textToSearch = "\($0.name) \($0.description)"
-                return textToSearch.range(of: searchText) != nil
+                return textToSearch.range(of: searchText.uppercased()) != nil
             }
-            dataIcon[section] = filtered
+            dataStock[section] = filtered
         }
         tableView.reloadData()
     }
