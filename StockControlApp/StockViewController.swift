@@ -9,45 +9,78 @@
 import UIKit
 import DataKit
 
-class StockViewController: UITableViewController {
+class StockViewController: UITableViewController, UISearchBarDelegate  {
 
     let maxSession = 5
     let maxRow = 15
     
-    lazy var dataImage = [Int:[NetworkImage]]()
+    @IBOutlet weak var searchBar: UISearchBar!
+    lazy var dataIcon = [Int:[Icon]]()
+
+    lazy var originalDataIcon = [Int: [Icon]]()
+    
+    var cache = [String: UIImageView]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        dataImage = generateImages(maxSession: maxSession, maxRow: maxRow)
+        dataIcon = generateIcons(maxSession: maxSession, maxRow: maxRow)
+        originalDataIcon = dataIcon
         
     }
     
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return dataImage.count
+        return dataIcon.count
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (dataImage[section]?.count)!
+        return (dataIcon[section]?.count)!
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "\(section)"
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "stockCell", for: indexPath)
         
-        let content = dataImage[indexPath.section]![indexPath.row]
+        let content = dataIcon[indexPath.section]![indexPath.row]
         
         cell.textLabel?.text = content.name
         cell.detailTextLabel?.text = content.description
         
-        cell.imageView?.downloadImageAsync(url: URL(string: content.link)!)
+        var image = UIImage(named: content.imageName)
+        image = image?.withRenderingMode(.alwaysTemplate)
+        cell.imageView?.image = image
+        
+        cell.imageView?.tintColor = UIColor(displayP3Red: normalizedRandom(), green: normalizedRandom(), blue: normalizedRandom(), alpha: 1)
         
         return cell
     }
         
-
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+            dataIcon = originalDataIcon
+            tableView.reloadData()
+            return
+        }
+        
+        for (section, list) in originalDataIcon {
+            let filtered = list.filter {
+                let textToSearch = "\($0.name) \($0.description)"
+                return textToSearch.range(of: searchText) != nil
+            }
+            dataIcon[section] = filtered
+        }
+        tableView.reloadData()
+    }
     
 
     /*
