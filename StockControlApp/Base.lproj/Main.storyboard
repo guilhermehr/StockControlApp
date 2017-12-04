@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8hh-Pu-xsH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="k8W-OM-HrN">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -79,7 +79,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hdl-jx-ADg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="902" y="-169"/>
+            <point key="canvasLocation" x="1313" y="-161"/>
         </scene>
         <!--Item 2-->
         <scene sceneID="gJs-Dj-ZfC">
@@ -195,10 +195,10 @@
             </objects>
             <point key="canvasLocation" x="-33" y="544"/>
         </scene>
-        <!--View Controller-->
+        <!--Settings View Controller-->
         <scene sceneID="LWO-JW-O2d">
             <objects>
-                <viewController id="9Oq-ca-Q3g" sceneMemberID="viewController">
+                <viewController id="9Oq-ca-Q3g" customClass="SettingsViewController" customModule="StockControlApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JnE-d8-G4u">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -252,11 +252,29 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="17" minValue="8" maxValue="60" translatesAutoresizingMaskIntoConstraints="NO" id="2gb-qo-tEy">
+                                <rect key="frame" x="169" y="458" width="192" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="sliderAction:" destination="9Oq-ca-Q3g" eventType="valueChanged" id="2Ke-aF-hhj"/>
+                                </connections>
+                            </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Font size" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ky3-VL-moG">
+                                <rect key="frame" x="16" y="458" width="131" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Uom-Js-3dY"/>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="more" id="gWf-Sa-hdZ"/>
+                    <connections>
+                        <outlet property="fontLabel" destination="Ky3-VL-moG" id="30C-Pu-5ph"/>
+                        <outlet property="slider" destination="2gb-qo-tEy" id="W1c-iA-yQU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8bx-tz-rfK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -386,7 +404,7 @@
                                     </switch>
                                 </subviews>
                             </stackView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="applechart1" translatesAutoresizingMaskIntoConstraints="NO" id="us2-pM-d2y">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="applechart1" translatesAutoresizingMaskIntoConstraints="NO" id="us2-pM-d2y">
                                 <rect key="frame" x="0.0" y="64" width="375" height="375"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="us2-pM-d2y" secondAttribute="height" multiplier="1:1" id="71u-2H-Bpx"/>
@@ -413,6 +431,91 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dmt-HP-D3K" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1804" y="-1105.0974512743628"/>
+        </scene>
+        <!--Text View Controller-->
+        <scene sceneID="xiu-9d-VQ5">
+            <objects>
+                <viewController id="k8W-OM-HrN" customClass="TextViewController" customModule="StockControlApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gCb-3K-0bE">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rMA-hX-hqw">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ivV-zU-mrL">
+                                        <rect key="frame" x="22" y="8" width="330" height="1365"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tGX-zG-dvH">
+                                                <rect key="frame" x="22" y="10" width="286" height="1325"/>
+                                                <mutableString key="text">Mussum Ipsum, cacilds vidis litro abertis. Manduma pindureta quium dia nois paga. A ordem dos tratores não altera o pão duris. Leite de capivaris, leite de mula manquis sem cabeça. Suco de cevadiss deixa as pessoas mais interessantis.
+
+Admodum accumsan disputationi eu sit. Vide electram sadipscing et per. Quem num gosta di mé, boa gentis num é. Suco de cevadiss, é um leite divinis, qui tem lupuliz, matis, aguis e fermentis. Nec orci ornare consequat. Praesent lacinia ultrices consectetur. Sed non ipsum felis.
+
+Si u mundo tá muito paradis? Toma um mé que o mundo vai girarzis! Cevadis im ampola pa arma uma pindureta. Interagi no mé, cursus quis, vehicula ac nisi. Quem num gosta di mim que vai caçá sua turmis!
+
+Mé faiz elementum girarzis, nisi eros vermeio. Sapien in monti palavris qui num significa nadis i pareci latim. Atirei o pau no gatis, per gatis num morreus. Não sou faixa preta cumpadi, sou preto inteiris, inteiris.
+
+Tá deprimidis, eu conheço uma cachacis que pode alegrar sua vidis. Per aumento de cachacis, eu reclamis. Aenean aliquam molestie leo, vitae iaculis nisl. Pra lá , depois divoltis porris, paradis.
+
+Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis. Diuretics paradis num copo é motivis de denguis. Todo mundo vê os porris que eu tomo, mas ninguém vê os tombis que eu levo! Detraxit consequat et quo num tendi nada.
+
+Casamentiss faiz malandris se pirulitá. Nullam volutpat risus nec leo commodo, ut interdum diam laoreet. Sed non consequat odio. Praesent malesuada urna nisi, quis volutpat erat hendrerit non. Nam vulputate dapibus. Si num tem leite então bota uma pinga aí cumpadi!
+
+Delegadis gente finis, bibendum egestas augue arcu ut est. Mauris nec dolor in eros commodo tempor. Aenean aliquam molestie leo, vitae iaculis nisl. In elementis mé pra quem é amistosis quis leo. Mais vale um bebadis conhecidiss, que um alcoolatra anonimis.
+
+Vehicula non. Ut sed ex eros. Vivamus sit amet nibh non tellus tristique interdum. Viva Forevis aptent taciti sociosqu ad litora torquent. Praesent vel viverra nisi. Mauris aliquet nunc non turpis scelerisque, eget. Em pé sem cair, deitado sem dormir, sentado sem cochilar e fazendo pose.
+
+Paisis, filhis, espiritis santis. Copo furadis é disculpa de bebadis, arcu quam euismod magna. Quem manda na minha terra sou euzis! Posuere libero varius. Nullam a nisl ut ante blandit hendrerit. Aenean sit amet nisi.</mutableString>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="tGX-zG-dvH" secondAttribute="trailing" constant="22" id="BRA-Be-TIh"/>
+                                            <constraint firstItem="tGX-zG-dvH" firstAttribute="top" secondItem="ivV-zU-mrL" secondAttribute="top" constant="10" id="Bqk-77-xY4"/>
+                                            <constraint firstItem="tGX-zG-dvH" firstAttribute="leading" secondItem="ivV-zU-mrL" secondAttribute="leading" constant="22" id="D5C-JA-Nzf"/>
+                                            <constraint firstAttribute="bottom" secondItem="tGX-zG-dvH" secondAttribute="bottom" constant="30" id="nUD-sA-TRU"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="ivV-zU-mrL" firstAttribute="top" secondItem="rMA-hX-hqw" secondAttribute="top" constant="8" id="Q8I-Qm-8fF"/>
+                                    <constraint firstAttribute="trailing" secondItem="ivV-zU-mrL" secondAttribute="trailing" constant="22" id="bdA-qw-8c9"/>
+                                    <constraint firstItem="ivV-zU-mrL" firstAttribute="centerX" secondItem="rMA-hX-hqw" secondAttribute="centerX" id="czh-BV-rEj"/>
+                                    <constraint firstAttribute="bottom" secondItem="ivV-zU-mrL" secondAttribute="bottom" constant="50" id="iKh-gD-mNf"/>
+                                    <constraint firstItem="ivV-zU-mrL" firstAttribute="leading" secondItem="rMA-hX-hqw" secondAttribute="leading" constant="22" id="ivw-TD-2GJ"/>
+                                </constraints>
+                            </scrollView>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="15" minValue="0.0" maxValue="30" translatesAutoresizingMaskIntoConstraints="NO" id="s9G-aJ-e8y">
+                                <rect key="frame" x="20" y="627" width="335" height="31"/>
+                                <connections>
+                                    <action selector="sliderAction:" destination="k8W-OM-HrN" eventType="valueChanged" id="n2b-Ig-xiR"/>
+                                </connections>
+                            </slider>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="rMA-hX-hqw" firstAttribute="top" secondItem="n0J-3H-wsh" secondAttribute="top" id="3ja-ZZ-W8A"/>
+                            <constraint firstItem="s9G-aJ-e8y" firstAttribute="leading" secondItem="n0J-3H-wsh" secondAttribute="leading" constant="22" id="7eE-ea-Bkv"/>
+                            <constraint firstItem="n0J-3H-wsh" firstAttribute="trailing" secondItem="rMA-hX-hqw" secondAttribute="trailing" id="D8S-Or-Hzd"/>
+                            <constraint firstItem="n0J-3H-wsh" firstAttribute="bottom" secondItem="s9G-aJ-e8y" secondAttribute="bottom" constant="10" id="EuC-CH-Wsi"/>
+                            <constraint firstItem="n0J-3H-wsh" firstAttribute="trailing" secondItem="s9G-aJ-e8y" secondAttribute="trailing" constant="22" id="GFO-EE-39q"/>
+                            <constraint firstItem="n0J-3H-wsh" firstAttribute="bottom" secondItem="rMA-hX-hqw" secondAttribute="bottom" id="K2d-89-dBN"/>
+                            <constraint firstItem="rMA-hX-hqw" firstAttribute="leading" secondItem="n0J-3H-wsh" secondAttribute="leading" id="w1u-a5-q7C"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="n0J-3H-wsh"/>
+                    </view>
+                    <connections>
+                        <outlet property="slider" destination="s9G-aJ-e8y" id="Vyh-4a-AEf"/>
+                        <outlet property="text" destination="tGX-zG-dvH" id="yRv-UR-JEf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cSU-5Y-ku5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2748" y="-1106.8965517241379"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="fYP-Jm-VdB">
@@ -450,6 +553,20 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EOs-Ad-dBr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-964" y="-160"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="J5D-MJ-nL7">
+            <objects>
+                <viewController id="fZw-0E-SF6" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Euv-V5-5De">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="344-yE-Hdh"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3Bj-m8-ZT6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
         </scene>
     </scenes>
     <resources>

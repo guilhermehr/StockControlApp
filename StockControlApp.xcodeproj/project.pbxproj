@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		791227E51FD5B55000BEA755 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791227E41FD5B55000BEA755 /* SettingsViewController.swift */; };
+		791227E71FD5BC6D00BEA755 /* TextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791227E61FD5BC6D00BEA755 /* TextViewController.swift */; };
 		7914D5E71FD4211800CFEFF5 /* FavoriteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7914D5E61FD4211800CFEFF5 /* FavoriteCell.swift */; };
 		7914D5ED1FD42D1300CFEFF5 /* DataKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7914D5EC1FD42D1300CFEFF5 /* DataKit.framework */; };
 		7914D5EE1FD42D1300CFEFF5 /* DataKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7914D5EC1FD42D1300CFEFF5 /* DataKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -34,6 +36,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		791227E41FD5B55000BEA755 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		791227E61FD5BC6D00BEA755 /* TextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewController.swift; sourceTree = "<group>"; };
 		7914D5E61FD4211800CFEFF5 /* FavoriteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCell.swift; sourceTree = "<group>"; };
 		7914D5EC1FD42D1300CFEFF5 /* DataKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DataKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		79319A591FD343AF00F17BF8 /* StockControlApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StockControlApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -86,6 +90,8 @@
 				79319A601FD343AF00F17BF8 /* Main.storyboard */,
 				79319A651FD343AF00F17BF8 /* LaunchScreen.storyboard */,
 				7914D5E61FD4211800CFEFF5 /* FavoriteCell.swift */,
+				791227E41FD5B55000BEA755 /* SettingsViewController.swift */,
+				791227E61FD5BC6D00BEA755 /* TextViewController.swift */,
 			);
 			path = StockControlApp;
 			sourceTree = "<group>";
@@ -178,6 +184,8 @@
 				7914D5E71FD4211800CFEFF5 /* FavoriteCell.swift in Sources */,
 				79319A801FD34D4D00F17BF8 /* FavoriteViewController.swift in Sources */,
 				79319A5D1FD343AF00F17BF8 /* AppDelegate.swift in Sources */,
+				791227E71FD5BC6D00BEA755 /* TextViewController.swift in Sources */,
+				791227E51FD5B55000BEA755 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
